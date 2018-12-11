@@ -28,6 +28,7 @@ end
 
 #As breadcrumb menùs are quite popular today, I won't digress much on explaining them, leaving the wiki link to do all the dirty work in my place.
 #What might not be so trivial is instead to get a decent breadcrumb from your current url. For this kata, your purpose is to create a function that takes a url, strips the first part (labelling it always HOME) and then builds it making each element but the last a <a> element linking to the relevant path; last has to be a <span> element getting the active class.
+#url length is 5 or less and exclude last item if it conttains "index" in it
 def generate_bc(url, separator)
   #your code here
   alph = ("a".."z").to_a
@@ -35,6 +36,7 @@ def generate_bc(url, separator)
   hyphen = ["-"]
   ans = ""
   url = url.split("/")
+  url.pop if url[-1].include?("index")
   url[-1].each_char do |x|
     if alph.include?(x) or calp.include?(x) or hyphen.include?(x)
       ans << x
@@ -42,6 +44,7 @@ def generate_bc(url, separator)
       break
     end
   end
+
   ans = ans.upcase
   if url.length ==3
     home = '<a href="/">HOME</a>'+ separator + '<a href="/'+ url[1]+'/">'+ url[1].upcase+'</a>'+ separator +'<span class="active">'+ ans +'</span>'
