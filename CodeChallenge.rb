@@ -57,3 +57,23 @@ def generate_bc(url, separator)
     return home
   end
 end
+
+#Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+def pig_it text
+  # ...
+  arr = text.split(" ")
+  key = ""
+  alpha = ("a".."z").to_a.concat(("A".."Z").to_a)
+  arr.each do |word|
+   if alpha.include?(word[0])
+     first = word[0]
+     rest = word[1..-1]
+     ay = "ay"
+     key << rest + first + ay + " "
+   else
+     key << word
+   end
+  end
+  key = key[0..-2] if key[-1] == " "
+  return key
+end
