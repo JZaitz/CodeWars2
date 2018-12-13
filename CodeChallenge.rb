@@ -77,3 +77,29 @@ def pig_it text
   key = key[0..-2] if key[-1] == " "
   return key
 end
+
+
+#Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none. For example:
+def anagrams(word, words)
+  ans = []
+  words.each do |werd|
+    if werd == word
+      ans.push(werd)
+    elsif werd.reverse == word
+      ans.push(werd)
+    else
+      hash = Hash.new(0)
+      hash2 = Hash.new(0)
+      word.each_char do |x|
+        hash[x] += 1
+      end
+      werd.each_char do |y|
+        hash2[y] += 1
+        ans << werd if hash == hash2 && werd.length == word.length
+
+      end
+
+    end
+  end
+  return ans
+end
