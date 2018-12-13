@@ -116,3 +116,34 @@ def generateHashtag(str)
   return false if str.empty?
   return "##{str}"
 end
+
+#Snail Sort
+#Given a 3 x 3 array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
+def snail(array)
+  ans = []
+  for i in 0..2
+    ans << array[0][i]
+  end
+  ans << array[1][2]
+  for i in 2.downto(0)
+    ans << array[2][i]
+  end
+  ans << array[1][0]
+  ans << array[1][1]
+  return ans
+end
+####  OR   #########
+def snail(array)
+  # enjoy
+  ans = []
+  ans << array[0][0]
+  ans << array[0][1]
+  ans << array[0][2]
+  ans << array[1][2]
+  ans << array[2][2]
+  ans << array[2][1]
+  ans << array[2][0]
+  ans << array[1][0]
+  ans << array[1][1]
+  return ans
+end
