@@ -103,3 +103,16 @@ def anagrams(word, words)
   end
   return ans
 end
+
+#The marketing team is spending way too much time typing in hashtags.
+#Let's help them with out own Hashtag Generator!
+#It must start with a hashtag (#).
+#All words must have their first letter capitalized.
+#If the final result is longer than 140 chars it must return false.
+#If the input or the result is an empty string it must return false.
+def generateHashtag(str)
+  str = str.split(' ').each.map {|x| x.capitalize}.join.gsub(/\s+/,"").strip
+  return false if str.length >= 140
+  return false if str.empty?
+  return "##{str}"
+end
