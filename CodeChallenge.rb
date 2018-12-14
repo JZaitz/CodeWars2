@@ -132,6 +132,8 @@ def snail(array)
   ans << array[1][1]
   return ans
 end
+
+
 ####  OR   #########
 def snail(array)
   # enjoy
@@ -145,5 +147,13 @@ def snail(array)
   ans << array[2][0]
   ans << array[1][0]
   ans << array[1][1]
+  return ans
+end
+
+#You are given an array with several "even" words, one "odd" word, and some numbers mixed in.
+#Determine if any of the numbers in the array is the index of the "odd" word. If so, return true, otherwise false.
+def oddball x
+  # code here
+  ans = x.include?(x.find_index("odd"))
   return ans
 end
