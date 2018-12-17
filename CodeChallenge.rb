@@ -157,3 +157,27 @@ def oddball x
   ans = x.include?(x.find_index("odd"))
   return ans
 end
+
+#our task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way. Hours, minutes and seconds only.
+def format_duration(seconds)
+  #your code here
+  min = seconds/60
+  hour = min/60
+  hourmin = hour % 60
+  hoursec = hourmin % 60
+  sec = seconds % 60
+
+  return "now" if seconds == 0 #time is now
+  if seconds >= 3600 #with hours
+    return "#{hour} hour" if seconds == 3600
+    return "#{hour} hour, #{hourmin} minute and #{sec} seconds" if hourmin == 1 && seconds >= 3600
+    return "#{hour} hours, #{hourmin} minutes and #{sec} seconds" if hourmin > 1 && hoursec != 0 && seconds >= 3600
+    return "#{hour} hours, #{hourmin} minutes" if hourmin > 1 && hoursecsec == 0 && seconds >= 360
+  else #no hours
+    return "#{sec} second" if min == 0 && sec == 1
+    return "#{sec} seconds" if min == 0 && sec >= 1
+    return "#{min} minute and #{sec} seconds" if min == 1
+    return "#{min} minutes and #{sec} seconds" if min > 1 && sec != 0
+    return "#{min} minutes" if min > 1 && sec == 0
+  end
+end
