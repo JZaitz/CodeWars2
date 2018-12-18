@@ -182,7 +182,7 @@ def format_duration(seconds)
   end
 end
 
-#Write a function dirReduc which will take an array of strings and returns an array of strings with the needless directions removed (W<->E or S<->N side by side).
+#Write a function dirReduc which will take an array of strings and returns an array of strings with the needless directions removed (W<->E or S<->N side by side). Regardless of order.
 def dirReduc(arr)
     ncount, scount = 0, 0
     ecount, wcount = 0, 0
