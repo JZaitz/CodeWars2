@@ -181,3 +181,30 @@ def format_duration(seconds)
     return "#{min} minutes" if min > 1 && sec == 0
   end
 end
+
+#Write a function dirReduc which will take an array of strings and returns an array of strings with the needless directions removed (W<->E or S<->N side by side).
+def dirReduc(arr)
+    ncount, scount = 0, 0
+    ecount, wcount = 0, 0
+    ans = []
+    arr.each do |y|
+      ncount += 1 if y == "NORTH"
+      scount += 1 if y == "SOUTH"
+      ecount += 1 if y == "EAST"
+      wcount += 1 if y == "WEST"
+    end
+
+    if ncount > scount
+      (ncount-scount).times {|x| ans << "NORTH"}
+    elsif scount > ncount
+      (scount-ncount).times {|x| ans << "SOUTH"}
+    end
+     if  ecount > wcount
+      (ecount-wcount).times {|x| ans << "EAST"}
+    elsif wcount > ecount
+      (wcount-ecount).times {|x| ans << "WEST"}
+    end
+
+    return ans
+
+  end
