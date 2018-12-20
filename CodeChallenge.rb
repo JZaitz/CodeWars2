@@ -268,3 +268,27 @@ class CaesarCipher
     end
     return count
   end
+
+#Your task in the kata is to determine how many boats are sunk damaged and untouched from a set amount of attacks. You will need to create a function that takes two arguments, the playing board and the attacks.
+  def damaged_or_sunk (board, attacks)
+    # Code here
+    ans = []
+    result = {'sunk' => 0, 'damaged' => 0, 'not_touched' => 0, 'points' => 0}
+    #check if each xy was a hit add to ans type boat if hit
+    attacks.each do |arr|
+      if board[arr[0]-1][arr[1]-1] > 0
+        result['points'] += 0.5
+        ans << board[arr[0]-1][arr[1]-1]
+      end
+    end
+    #check for unhit boats assume 1 2 3 type boats in each game
+    1.upto(3) do |x|
+      result['damaged'] += 1 if ans.include?(x)
+      result['points'] -= 1 if not ans.include?(x) && result['points'] > 0
+      result['not_touched'] += 1 if not ans.include?(x)
+      result['sunk'] += 1 if ans.count(x) == x
+    end
+
+    return result
+
+  end
