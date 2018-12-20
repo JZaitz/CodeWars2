@@ -252,3 +252,19 @@ class CaesarCipher
       return ans
     end
   end
+
+
+#count the number of times 1 can be added up to n
+  def exp_sum(n)
+    #your code here
+    count = 0
+    return 1 if n == 1 or n == 0
+    return 0 if n < 0
+    num = n
+    while n >= 1
+      count += 1
+      n = n-1
+      num = n + count
+    end
+    return count
+  end
