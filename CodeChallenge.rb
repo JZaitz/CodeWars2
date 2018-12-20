@@ -208,3 +208,47 @@ def dirReduc(arr)
     return ans
 
   end
+
+#Write a class that, when given a string, will return an uppercase string with each letter shifted forward in the alphabet by however many spots the cipher was initialized to.
+class CaesarCipher
+    def initialize(shift)
+      #your code here
+      @shift = shift
+    end
+
+    def encode(string)
+      #your code here
+      ans = []
+      string = string.downcase
+      string = string.split("")
+      alph = ("a".."z").to_a.concat(("a".."z").to_a)
+      string.each do |x|
+        if not alph.include?(x)
+          ans << x
+        else
+          ind = alph.find_index(x)
+          ans << alph[ind + @shift]
+        end
+      end
+      ans = ans.join.upcase
+      return ans
+    end
+
+    def decode(string)
+      #your code here
+      ans = []
+      string = string.downcase
+      string = string.split("")
+      alph = ("a".."z").to_a.concat(("a".."z").to_a)
+      string.each do |x|
+        if not alph.include?(x)
+          ans << x
+        else
+          ind = alph.find_index(x)
+          ans << alph[ind - @shift]
+        end
+      end
+      ans = ans.join.upcase
+      return ans
+    end
+  end
