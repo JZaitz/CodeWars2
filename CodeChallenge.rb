@@ -292,3 +292,51 @@ class CaesarCipher
     return result
 
   end
+
+
+# Create a Warrior class
+# It must support level, rank, experience, achievements, training(event), and battle(enemy_level) methods
+class Warrior
+  attr_accessor :level, :rank, :experience, :achievements
+
+  @@ranks = ["Pushover", "Novice", "Fighter", "Warrior", "Veteran", "Sage", "Elite", "Conqueror", "Champion", "Master", "Greatest"]
+
+  def initialize(level, rank, experience, achievements)
+    @level = 1
+    @rank = "Pushover"
+    @experience = 100
+    @achievements = []
+  end
+
+  def training(event)
+    @rank = "Master"
+    @experience += event[1]
+    @level = @experience/100
+    @achievements << event[0]
+    return event[0]
+  end
+
+  def battle(enemy_level)
+    @experience += 5
+    return "A good fight" if enemy_level >= 90
+  end
+end
+##TESTS
+tom = Warrior.new(1, "Pushover", 100, [])
+Test.assert_equals(tom.level, 1)
+Test.assert_equals(tom.experience, 100)
+Test.assert_equals(tom.rank, "Pushover")
+
+bruce_lee = Warrior.new(1, "Pushover", 100, [])
+Test.assert_equals(bruce_lee.level, 1)
+Test.assert_equals(bruce_lee.experience, 100)
+Test.assert_equals(bruce_lee.rank, "Pushover")
+Test.assert_equals(bruce_lee.achievements, [])
+Test.assert_equals(bruce_lee.training(["Defeated Chuck Norris", 9000, 1]), "Defeated Chuck Norris")
+Test.assert_equals(bruce_lee.experience, 9100)
+Test.assert_equals(bruce_lee.level, 91)
+Test.assert_equals(bruce_lee.rank, "Master")
+Test.assert_equals(bruce_lee.battle(90), "A good fight")
+Test.assert_equals(bruce_lee.experience, 9105)
+Test.assert_equals(bruce_lee.achievements, ["Defeated Chuck Norris"])
+##END TESTS
