@@ -340,3 +340,37 @@ Test.assert_equals(bruce_lee.battle(90), "A good fight")
 Test.assert_equals(bruce_lee.experience, 9105)
 Test.assert_equals(bruce_lee.achievements, ["Defeated Chuck Norris"])
 ##END TESTS
+
+#Metaprogramming--Define 1,337 classes, each of which need to have 1 class method and 1 public instance method, that each return values. The names of the methods and the return values can be whatever you wish.
+#Use the leet_classes method to return all of the classes in an array.
+
+class Klassof
+  @@alph = ("a".."z").to_a
+  def initialize
+    @random = rand 137
+  end
+
+  def nummaker
+     return @random
+  end
+
+  def klassmaker
+     klass = Class.new {
+      def foo
+        return rand 1337
+      end
+      def self.bar
+        return @@alph[rand(26) + 1]
+      end
+    }
+  end
+end
+
+def leet_classes
+  arr = []
+  jason = Klassof.new
+  1337.times do
+    arr.push(jason.klassmaker)
+  end
+  return arr
+end
