@@ -374,3 +374,14 @@ def leet_classes
   end
   return arr
 end
+
+
+#A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
+#Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
+def panagram?(string)
+  alpha = ("a".."z").to_a
+  counter = 0
+  str = string.delete(" ").downcase
+  alpha.each {|x| str.include?(x) ? str.delete(x) : counter += 1 }
+  counter == 0 ? true : false
+end
