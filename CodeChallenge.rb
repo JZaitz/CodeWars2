@@ -385,3 +385,52 @@ def panagram?(string)
   alpha.each {|x| str.include?(x) ? str.delete(x) : counter += 1 }
   counter == 0 ? true : false
 end
+
+#Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum.
+def sum_pairs(ints, s)
+    #your code here
+    ans = []
+    sol = []
+   #0.upto(s) do |x|
+   s.downto(0) do |x|
+     sol << [s-x, x]
+   end
+
+   hash = {}
+   #put into ans if sol is included in ints array
+   sol.each do |x|
+     ans << x if ints.include?(x[0]) and ints.include?(x[1])
+   end
+   #find max index of ints of both soltions
+   ans.each do |arr|
+     hash[arr] = [ints.find_index(arr[0]), ints.find_index(arr[1])].max
+   end
+   hash.sort_by do |k,v|
+     v
+   end
+
+   return nil if hash.empty?
+   hash.each {|x, y| return x}
+
+
+end
+
+
+#Convert PascalCase string into snake_case
+#Complete the function/method so that it takes CamelCase string and returns the string in snake_case notation. Lowercase characters can be numbers. If method gets number, it should return string.
+def to_underscore(string)
+  inds = []
+  ans = ''
+  #split to array on caps and map caps downcase
+  caps = string.split(/[^A-Z]*/).each.map(&:downcase)
+  #break string up by caps
+  caps.each {|x| inds << string.index(x.upcase)}
+  #add in "_" and index of cap to ending or to next index of cap letter if it exists
+  ans << string[0...inds[1]].downcase
+  (inds.length).times do |n|
+     ans << "_"+string[inds[n+1]...inds[n+2]].downcase if inds[n+2]
+     ans << "_"+string[inds[n+1]..-1].downcase if inds[n+1] and !inds[n+2]
+  end
+  return ans
+
+end
