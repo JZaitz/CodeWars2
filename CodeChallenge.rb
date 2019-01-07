@@ -441,7 +441,7 @@ def whoIsNext(names, r)
   # your code
   names = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"]
 
-  r.times do |num|
+  r.times do 
     x = names[0]
     names = names[1..-1]
     2.times {names.push(x)}
