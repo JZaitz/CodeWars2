@@ -441,11 +441,40 @@ def whoIsNext(names, r)
   # your code
   names = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"]
 
-  r.times do 
+  r.times do
     x = names[0]
     names = names[1..-1]
     2.times {names.push(x)}
   end
 
   return names[-1]
+end
+
+
+#Let's pretend your company just hired your friend from college and paid you a referral bonus. Awesome! To celebrate, you're taking your team out to the terrible dive bar next door and using the referral bonus to buy, and build, the largest three-dimensional beer can pyramid you can. And then probably drink those beers, because let's pretend it's Friday too.
+#A beer can pyramid will square the number of cans in each level - 1 can in the top level, 4 in the second, 9 in the next, 16, 25...
+#Complete the beeramid function to return the number of complete levels of a beer can pyramid you can make, given the parameters of:
+#1) your referral bonus, and
+#2) the price of a beer can
+
+def beeramid(bonus, price)
+  beers = (bonus.to_f/price.to_f)
+  beers = beers.to_i
+  #see how many beers total can be purchased
+  levels = 0
+  count = beers
+  total = []
+  #handle base cases for 0 and 1 level
+  return 0 if bonus <= 0
+  return 1 if beers < 5 and beers >= 1
+  #iterate through total num of beers subtract count and add levels each round
+  beers.times do |x|
+    total << (x+1)**2
+    break if total.reduce(:+) > beers
+    levels += 1
+    break if count <= (x+1)**2
+    count -= (x+1)**2
+  end
+  return levels
+
 end
