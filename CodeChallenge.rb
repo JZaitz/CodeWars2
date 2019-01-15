@@ -478,3 +478,17 @@ def beeramid(bonus, price)
   return levels
 
 end
+
+#In this Kata, you will be given boolean values and boolean operators. Your task will be to combine to operators in with boolean values in the correct order
+
+def solve(s,ops)
+  arr = []
+  boo = s.split("")
+  opp = ops.split("")
+
+  for x in 0..(boo.length-1)
+    arr << boo[x]
+    arr << ops[x] if ops[x]
+  end
+  return arr.join
+end
